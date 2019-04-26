@@ -1,1 +1,2 @@
 # S-parameter-VNA
+Vector network analyzer (VNA) measures the s-parameter from the transfer matrix. To extract the lumped elements such as R,C,L one needs to perform some transformation. The origin talk code can extract the R,C,L quantities from the measured S parameter. Since we only used S11 component for our measurements, we kept the S12, S21 and S22 as zero. For our experiments, we used Hewlett Packard model 8753B VNA.
