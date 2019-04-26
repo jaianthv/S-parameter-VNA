@@ -1,0 +1,65 @@
+
+[Main]
+	
+doc -e LB{
+		
+    wks.addCol();
+    COL(J) = COL(B)/COL(B);
+    wks.col10.format=1;
+    //wks.col10.numerictype= 11;
+}
+	doc -e LB{
+	wks.addCol();
+	wks.col11.format=1;
+	wks.col11.numerictype= 11;
+	COL(11)[L]$=Znumerator;
+	COL(K) = real2complex(COL(J),COL(C)) // Z_numerator
+	}
+
+	doc -e LB{
+	wks.addCol();
+	wks.col12.format=1;
+	wks.col12.numerictype=11;
+	COL(12)[L]$=Zdenominator;
+	COL(L) = real2complex(COL(J),-COL(C)) // Z_denominator
+	}
+
+	doc -e LB{
+    wks.addCol();
+	wks.col13.format=1;
+	wks.col13.numerictype=11;
+	COL(13)[L]$=Zvalue;
+	COL(M) = 50 * imdiv(COL(K),COL(L)) // Z_denominator
+	
+}
+
+//capacitance
+doc -e LB{
+    wks.addCol();
+	wks.col14.format=1;
+	wks.col14.numerictype=11;
+	COL(14)[L]$=Capacitance;
+	COL(N) = 1 /(2 * 3.14 * COL(A) * abs(imaginary(COL(M)) )) // Z_denominator
+	
+}
+
+//Q value
+doc -e LB{
+    wks.addCol();
+    COL(15)[L]$=Qfactor;
+	COL(O) = abs(imreal(COL(M))) / abs(imaginary(COL(M))) // Z_denominator
+	
+}
+
+//Inductance
+doc -e LB{
+    wks.addCol();
+	wks.col16.format=1;
+	wks.col16.numerictype=11;
+	COL(16)[L]$=Inductance;
+	COL(P) = abs(imaginary(COL(M))) /(2 * 3.14 * COL(A) ) // Z_denominator
+	
+}
+
+
+}
